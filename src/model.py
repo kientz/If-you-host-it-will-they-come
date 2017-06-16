@@ -10,7 +10,7 @@ from sklearn import linear_model
 
 from sklearn.metrics import mean_squared_error
 
-df = pd.read_csv('formodel.csv',encoding = "ISO-8859-1")
+df = pd.read_csv('../data/formodel.csv',encoding = "ISO-8859-1")
 
 df.columns
 

@@ -4,7 +4,7 @@ import numpy as np
 
 #TWO LEVEL PIVOTS - DOMAIN AND REGIONS
 #Handle the Conferences first
-df = pd.read_excel('ALLEVENT_Data.xlsx')
+df = pd.read_excel('../data/ALLEVENT_Data.xlsx')
 
 
 

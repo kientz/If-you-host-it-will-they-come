@@ -117,7 +117,7 @@ def set_regions(df):
 
 
 if __name__ == '__main__':
-    df = pd.read_excel('ConferenceStates.xlsx')
+    df = pd.read_excel('../data/ConferenceStates.xlsx')
     df3 = set_regions(df)
     print("Writing CSV file with regions identified")
     df3.to_csv('conferencestates_with_regions.csv')

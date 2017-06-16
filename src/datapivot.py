@@ -8,7 +8,7 @@ import numpy as np
 
 #TWO LEVEL PIVOTS - DOMAIN AND REGIONS
 #Handle the Conferences first
-df = pd.read_excel('RealData_JustConferences.xlsx')
+df = pd.read_excel('../data/../data/RealData_JustConferences.xlsx')
 
 k=df.pivot_table(index=['Domain','Super_Region'],values=['amtRevised','DistanceTraveled'],aggfunc=[np.mean,np.median,np.std,len])
 k.to_csv('Domain_SuperRegion_distance_cost_count.csv')
@@ -59,7 +59,7 @@ k.to_csv('Region_distance_cost_count.csv')
 
 
 #Now do the webcasts
-df = pd.read_excel('RealData_JustWebcasts.xlsx')
+df = pd.read_excel('../data/RealData_JustWebcasts.xlsx')
 
 m=df.pivot_table(index=['Domain','Super_Region'],values=['amtRevised'],aggfunc=[np.mean,np.median,np.std,len])
 m.to_csv('WEBDomain_SuperRegion_cost_count.csv')
@@ -89,16 +89,16 @@ k.to_csv('WEBRegion_cost_count.csv')
 
 
 
-
+'''
 #GOOD
 #Get num of conf per city
-df=pd.read_csv('ConfOnly_Type_Domain_LCity_count.csv')
+df=pd.read_csv('../data/ConfOnly_Type_Domain_LCity_count.csv')
 df.columns
 k=df.pivot_table(index=['L_City'],values=['Number of Repeats of Topic in City'],aggfunc=[np.sum])
 k.to_csv('Num_of_Conf_per_City.csv')
 
 #GOOD
-k2=dfcity.pivot_table(index=['L_City','Domain'],values=['Number of Repeats of Topic in City'],aggfunc=[np.sum])
+k2=df.pivot_table(index=['L_City','Domain'],values=['Number of Repeats of Topic in City'],aggfunc=[np.sum])
 k2.to_csv('Num_of_Conf_per_City_Domain.csv')
 
 
@@ -108,15 +108,15 @@ k3.to_csv('Num_of_Conf_By_Region.csv')
 k4=df.pivot_table(index=['Region','Domain'],values=['AmtRevised','DistanceTraveled'],aggfunc=[np.mean,np.median,np.std,len])
 k4.to_csv('Num_of_Conf_By_Region_Domain.csv')
 
-k5=dfcity.pivot_table(index=['Region','Domain'],values=['Number of Repeats of Topic in City'],aggfunc=[np.sum])
+k5=df.pivot_table(index=['Region','Domain'],values=['Number of Repeats of Topic in City'],aggfunc=[np.sum])
 k5.to_csv('Num_of_Conf_per_Region_Domain.csv')
-
+'''
 
 
 
 
 #Section on Conference Location and breakdown - no users
-dfconf=pd.read_excel('ALLCONFERENCEEVENT_Data.xlsx')
+dfconf=pd.read_excel('../data/ALLCONFERENCEEVENT_Data.xlsx')
 dfconf.columns
 k6=dfconf.pivot_table(index=['L_Region','Domain'],values=['L_Lat'],aggfunc=[len])
 k6.to_csv('Num_of_EVENTS_per_Region_Domain.csv')

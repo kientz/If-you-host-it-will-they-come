@@ -46,7 +46,7 @@ def prepare_data(df):
 
 if __name__ == '__main__':
     #dffull =pd.read_excel('RealData.xlsx',skip_blank_lines=True,encoding = "ISO-8859-1")
-    dffull =pd.read_excel('RealData_JustConferences.xlsx',skip_blank_lines=True,encoding = "ISO-8859-1")
+    dffull =pd.read_excel('../data/RealData_JustConferences.xlsx',skip_blank_lines=True,encoding = "ISO-8859-1")
     scrubbed=prepare_data(dffull)
 
     #dfUSA=df[dffull.country=='USA']  Subset just USA Countries

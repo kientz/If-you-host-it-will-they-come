@@ -24,11 +24,17 @@ def country_lat_long(df):
     for i in range(len(df)):
         if df.country[i] != "Canada":
             if df.country[i] != "USA":
-                #Not USA or Canada (145 cnt)
-                temp=geolocator.geocode(df.country[i])
-                df.Lat[i] = temp.latitude
-                df.Long[i] = temp.longitude
-                print(i, df.country[i], temp.address,temp.latitude, temp.longitude)
+                if df.Lat[i] > -90.0: #if lat is > -90 skip
+                    #If Lat is defined - we don't need to get it again!
+                    #print("SKIPPING IF LAT LONG IS ALREADY DEFINED - GEOPY INTERNATIONAL")
+                    pass
+                    #run after zipcode so most us are good.
+                else:
+                    #Not USA or Canada (145 cnt)
+                    temp=geolocator.geocode(df.country[i])
+                    df.Lat[i] = temp.latitude
+                    df.Long[i] = temp.longitude
+                    print(i, df.country[i], temp.address,temp.latitude, temp.longitude)
     return df
 
 
@@ -39,12 +45,13 @@ def us_zipcode_to_lat_long(df):
     not_in_database=0
     for i in range(len(df)):
         if df.country[i] == "USA":
-            print(i)
+            #print(i)
             #Only check zip if USA
             if len(str(df.zip[i]))==10:  #set the length to 5 for the -XXXX Zips.
                 df.zip[i]=df.zip[i][0:5]
             if df.Lat[i] > 0.0:
-                print("SKIPPING IF LAT LONG IS ALREADY DEFINE")
+                #print("SKIPPING IF LAT LONG IS ALREADY DEFINE")
+                pass
             else:
                 if isinstance(df.zip[i],(str,int)):  #Blanks become float nans - make sure string
                     if str(df.zip[i]).isdigit():  #look for 5 digits.
@@ -59,7 +66,11 @@ def us_zipcode_to_lat_long(df):
                             df.Long[i] = myzip.lon
                             #print(myzip.lat,myzip.lon)
                             print('input:', i,':', df.city[i],':', df.state[i],':',df.country[i],':','output:', myzip.lat, myzip.lon)
-        print('missing number of zipcodes not in zipcode database', not_in_database)
+    print('missing number of zipcodes not in zipcode database', not_in_database)
+    return df
+
+
+
 
 
 
@@ -72,6 +83,7 @@ def us_canada_city_state_lat_long(df):
 
         if df.Lat[i] > -90.0: #if lat is > -90 skip
             #If Lat is defined - we don't need to get it again!
+            #print("SKIPPING IF LAT LONG IS ALREADY DEFINED - GEOPY")
             #run after zipcode so most us are good.
             pass
         else:
@@ -85,13 +97,13 @@ def us_canada_city_state_lat_long(df):
                 df.Long[i] = temp.longitude
                 print('input:', i,':', df.city[i],':', df.state[i],':',df.country[i],':','output:', temp.address,':',temp.latitude,':', temp.longitude)
 
-        print("Number of locations (US and Canada) that were not in the database=",not_in_database)
-        return df
+    print("Number of locations (US and Canada) that were not in the database=",not_in_database)
+    return df
 
 
 if __name__ == '__main__':
-    dffull =pd.read_excel('RealData_JustConferences.xlsx',skip_blank_lines=True,encoding = "ISO-8859-1")
-    df2=country_lat_long(df)
+    dffull =pd.read_excel('../data/RealData_JustConferences.xlsx',skip_blank_lines=True,encoding = "ISO-8859-1")
+    df2=country_lat_long(dffull)
     df3=us_zipcode_to_lat_long(df2)
     df4=us_canada_city_state_lat_long(df3)
 

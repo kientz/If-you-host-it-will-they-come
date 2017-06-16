@@ -19,7 +19,7 @@ def calc_great_dist(df):
 
 
 if __name__ == '__main__':
-    df =pd.read_excel('RealData_JustConferences.xlsx',skip_blank_lines=True,encoding = "ISO-8859-1")
+    df =pd.read_excel('../data/RealData_JustConferences.xlsx',skip_blank_lines=True,encoding = "ISO-8859-1")
     df2 = calc_great_dist(df)
     print("Writing CSV file with distances calculated")
     df2.to_csv('RealData_conference_with_distance.csv')

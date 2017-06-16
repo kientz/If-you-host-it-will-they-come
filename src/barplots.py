@@ -27,6 +27,9 @@ if __name__ == '__main__':
     #3 total attend by category - also avg attendence by Domain_distance_cost_count
     #2x for the Web - 8 plots will be made
 
+    #I needed to clean up these csv files to remove headers and prepare them for plotting.
+    #CSVs generated from datpivot.py
+
     if True:
         title='CONFERENCE DATA'
         df=pd.read_csv('SuperRegion_distance_cost_count.csv')

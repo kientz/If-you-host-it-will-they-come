@@ -11,8 +11,8 @@ from set_region_and_super_region import define_regions
 superregions2, superregions, regions, regions2, state_to_code, code_to_state = define_regions()
 
 
-srg=pd.read_csv('superregions.csv')  #Get Lat Long of Region Centers
-rg=pd.read_csv('regions.csv')
+srg=pd.read_csv('../data/superregions.csv')  #Get Lat Long of Region Centers
+rg=pd.read_csv('../data/regions.csv')
 
 #Region Lat Long
 latrg = list(rg["LAT"])
@@ -27,7 +27,7 @@ srgid = list(srg["SUPER_REGIONS"])
 #df=pd.read_excel('conference_lat_long_and_counts.xlsx')
 #df=pd.read_excel('Type_Domain_count.xlsx')  #both Web and Conference
 
-df=pd.read_excel('RealData_JustConferences.xlsx')  #both Web and Conference
+df=pd.read_excel('../data/RealData_JustConferences.xlsx')  #both Web and Conference
 colnames=list(df.columns)
 
 

@@ -7,8 +7,8 @@ from set_region_and_super_region import define_regions
 superregions2, superregions, regions, regions2, state_to_code, code_to_state = define_regions()
 
 
-srg=pd.read_csv('superregions.csv')  #Get Lat Long of Region Centers
-rg=pd.read_csv('regions.csv')
+srg=pd.read_csv('../data/superregions.csv')  #Get Lat Long of Region Centers
+rg=pd.read_csv('../data/regions.csv')
 
 latrg = list(rg["LAT"])
 lonrg = list(rg["LON"])
@@ -18,9 +18,9 @@ latsrg = list(srg["LAT"])
 lonsrg = list(srg["LON"])
 srgid = list(srg["SUPER_REGIONS"])
 
-dfrd=pd.read_excel('RealData_JustConferences.xlsx',sheetname='Pivot_Conf_Region_Domain_by_attendee')
+dfrd=pd.read_excel('../data/RealData_JustConferences.xlsx',sheetname='Pivot_Conf_Region_Domain_by_attendee')
 lendfrd=len(dfrd)
-dfr=pd.read_excel('RealData_JustConferences.xlsx',sheetname='Pivot Cof_Region_by_Attendee')
+dfr=pd.read_excel('../data/RealData_JustConferences.xlsx',sheetname='Pivot Cof_Region_by_Attendee')
 lendfr=len(dfr)
 dfrd.fillna(0,inplace=True)
 
